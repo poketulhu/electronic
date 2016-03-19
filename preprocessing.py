@@ -83,14 +83,18 @@ def process_data(data):
   # price_method
   price_method = pd.get_dummies(data['PRICE_METHOD'])
 
+  # customer_type2
+  customer_type2 = pd.get_dummies(data['CUSTOMER_TYPE2'])
+
   temp = pd.concat([transaction_years, transaction_months, transaction_days, product_price, gross_sales,
                     customer_segment1, customer_type1, customer_account_type, first_order_years, first_order_months,
                     first_order_day, brand, product_sales_unit, shipping_weight, product_cost1, product_unit_of_measure,
-                    order_source, price_method, special_parts], axis=1)
+                    order_source, price_method, customer_type2, special_parts], axis=1)
 
   for i in ['TRANSACTION_DATE', 'SPECIAL_PART', 'PRODUCT_PRICE', 'GROSS_SALES', 'CUSTOMER_SEGMENT1',
             'CUSTOMER_TYPE1', 'CUSTOMER_ACCOUNT_TYPE', 'CUSTOMER_FIRST_ORDER_DATE', 'BRAND', 'PRODUCT_SALES_UNIT',
-            'SHIPPING_WEIGHT', 'PRODUCT_COST1', 'PRODUCT_UNIT_OF_MEASURE', 'ORDER_SOURCE', 'PRICE_METHOD']:
+            'SHIPPING_WEIGHT', 'PRODUCT_COST1', 'PRODUCT_UNIT_OF_MEASURE', 'ORDER_SOURCE', 'PRICE_METHOD', 'CUSTOMER_TYPE2',
+            'CUSTOMER_MANAGED_LEVEL']:
     data = data.drop(i, 1)
 
   data = pd.concat([data, temp], axis=1)
